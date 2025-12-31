@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 🎉</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Comic Sans MS', cursive;
+  background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Falling hearts & flowers */
+.fall {
+  position: fixed;
+  top: -10%;
+  font-size: 22px;
+  animation: fall linear infinite;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* Blinking stars */
+.star {
+  position: fixed;
+  color: gold;
+  font-size: 16px;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  width: 360px;
+  text-align: center;
+  z-index: 10;
+  animation: pop 0.8s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+img {
+  width: 220px;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+button {
+  padding: 10px 25px;
+  margin: 10px;
+  border: none;
+  border-radius: 30px;
+  background: #ff69b4;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff1493;
+  transform: scale(1.1);
+}
+
+.hidden { display: none; }
+
+.hearts {
+  font-size: 24px;
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Sounds -->
+<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+<audio id="giftSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3"></audio>
+
+<!-- Falling decorations -->
+<script>
+const emojis = ["❤️","🌸","💖","🌺","💐"];
+for(let i=0;i<30;i++){
+  let el=document.createElement("div");
+  el.className="fall";
+  el.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.animationDuration=3+Math.random()*5+"s";
+  document.body.appendChild(el);
+}
+
+/* Stars */
+for(let i=0;i<25;i++){
+  let star=document.createElement("div");
+  star.className="star";
+  star.innerHTML="⭐";
+  star.style.top=Math.random()*100+"vh";
+  star.style.left=Math.random()*100+"vw";
+  document.body.appendChild(star);
+}
+</script>
+
+<div class="container">
+
+<!-- PAGE 1 -->
+<div id="step1">
+  <img src="https://i.imgur.com/2DsA49b.png"> <!-- cute smiling cat -->
+  <p>Hey! Ready for a cute New Year surprise? 🎊</p>
+  <button onclick="noClick()">No</button>
+  <button onclick="yesClick()">Yes</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="step2" class="hidden">
+  <img src="https://i.imgur.com/WxNkK0N.png"> <!-- funny angry cat -->
+  <p>How dare you 😾<br>Go back and click YES!</p>
+  <button onclick="goBack()">Go Back</button>
+</div>
+
+<!-- PAGE 3 -->
+<div id="step3" class="hidden">
+  <img src="https:/
